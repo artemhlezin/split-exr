@@ -1,7 +1,8 @@
 ## Split .exr layers in nuke 
 
 
-### The script doesn't work in nuke 11!
+### Issues
+The script doesn't work in nuke 11!
 
 ### How it works
 
