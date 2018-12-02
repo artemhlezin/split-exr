@@ -2,7 +2,7 @@
 
 
 ### Issues
-The script doesn't work in nuke 11!
+The script doesn't work in nuke >= 11!
 
 ### How it works
 
