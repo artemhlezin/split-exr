@@ -1,6 +1,6 @@
 import nuke
-from PySide import QtCore
-from PySide import QtGui
+from PySide2 import QtCore
+from PySide2 import QtGui
 from models import LayersListModel
 from ui import SplitLayersUI
 import nuke_actions
@@ -37,7 +37,7 @@ class SplitLayers(SplitLayersUI):
         self.split_explicit = split_explicit
         self.split_implicit = split_implicit
 
-        self.proxyModel = QtGui.QSortFilterProxyModel()
+        self.proxyModel = QtCore.QSortFilterProxyModel()
         self.input_model = LayersListModel(self.layers)
         self.split_model = LayersListModel(self.layers_for_split)
 
