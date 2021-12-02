@@ -1,5 +1,4 @@
 from PySide2 import QtCore
-import re
 
 
 class LayersListModel(QtCore.QAbstractListModel):
