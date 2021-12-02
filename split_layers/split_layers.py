@@ -1,3 +1,4 @@
+from os import pipe
 import nuke
 from PySide2 import QtCore
 from PySide2 import QtGui
@@ -12,7 +13,7 @@ def main():
     try:
         node = nuke.selectedNode()
     except ValueError as err:
-        print err
+        print(err)
         nuke.message('no node selected')
     if node:
         node_data = data_collect(node)

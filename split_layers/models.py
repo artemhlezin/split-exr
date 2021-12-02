@@ -1,4 +1,5 @@
 from PySide2 import QtCore
+import re
 
 
 class LayersListModel(QtCore.QAbstractListModel):
@@ -52,6 +53,7 @@ class LayersListModel(QtCore.QAbstractListModel):
             if index.isValid()], key=lambda index: index.row())
         encodedData = '\n'.join(self.data(index, QtCore.Qt.DisplayRole)
                 for index in sortedIndexes)
+        encodedData = QtCore.QByteArray(encodedData.encode("utf-8"))
         mimeData = QtCore.QMimeData()
         mimeData.setData(self.Mimetype, encodedData)
         return mimeData
@@ -68,6 +70,7 @@ class LayersListModel(QtCore.QAbstractListModel):
     def setData(self, index, value, role=QtCore.Qt.EditRole):
         if index.isValid():
             if role == QtCore.Qt.EditRole:
+                value = re.findall("b'(.+)'", value)[0]
                 self.__layers[index.row()] = value
                 self.dataChanged.emit(index, index)
                 return True
