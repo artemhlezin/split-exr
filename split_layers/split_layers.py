@@ -1,6 +1,7 @@
+from os import pipe
 import nuke
-from PySide import QtCore
-from PySide import QtGui
+from PySide2 import QtCore
+from PySide2 import QtGui
 from models import LayersListModel
 from ui import SplitLayersUI
 import nuke_actions
@@ -12,7 +13,7 @@ def main():
     try:
         node = nuke.selectedNode()
     except ValueError as err:
-        print err
+        print(err)
         nuke.message('no node selected')
     if node:
         node_data = data_collect(node)
@@ -37,7 +38,7 @@ class SplitLayers(SplitLayersUI):
         self.split_explicit = split_explicit
         self.split_implicit = split_implicit
 
-        self.proxyModel = QtGui.QSortFilterProxyModel()
+        self.proxyModel = QtCore.QSortFilterProxyModel()
         self.input_model = LayersListModel(self.layers)
         self.split_model = LayersListModel(self.layers_for_split)
 

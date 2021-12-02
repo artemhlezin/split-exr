@@ -2,7 +2,8 @@
 
 
 ### Issues
-The script doesn't work in nuke >= 11!
+~~The script doesn't work in nuke >= 11!~~
+now is work in nuke 13 doesn't work in nuke < 13!
 
 ### How it works
 

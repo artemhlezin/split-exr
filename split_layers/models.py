@@ -1,4 +1,4 @@
-from PySide import QtCore
+from PySide2 import QtCore
 
 
 class LayersListModel(QtCore.QAbstractListModel):
@@ -27,7 +27,7 @@ class LayersListModel(QtCore.QAbstractListModel):
         if row == -1:
             row = self.rowCount()
 
-        strings = str(data.data(self.Mimetype)).split('\n')
+        strings = str(data.data(self.Mimetype), "utf-8").split('\n')
         self.insertRows(row, len(strings))
         for i, text in enumerate(strings):
             self.setData(self.index(row + i, 0), text)
@@ -52,6 +52,7 @@ class LayersListModel(QtCore.QAbstractListModel):
             if index.isValid()], key=lambda index: index.row())
         encodedData = '\n'.join(self.data(index, QtCore.Qt.DisplayRole)
                 for index in sortedIndexes)
+        encodedData = QtCore.QByteArray(encodedData.encode("utf-8"))
         mimeData = QtCore.QMimeData()
         mimeData.setData(self.Mimetype, encodedData)
         return mimeData
