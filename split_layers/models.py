@@ -28,7 +28,7 @@ class LayersListModel(QtCore.QAbstractListModel):
         if row == -1:
             row = self.rowCount()
 
-        strings = str(data.data(self.Mimetype)).split('\n')
+        strings = str(data.data(self.Mimetype), "utf-8").split('\n')
         self.insertRows(row, len(strings))
         for i, text in enumerate(strings):
             self.setData(self.index(row + i, 0), text)
@@ -70,7 +70,6 @@ class LayersListModel(QtCore.QAbstractListModel):
     def setData(self, index, value, role=QtCore.Qt.EditRole):
         if index.isValid():
             if role == QtCore.Qt.EditRole:
-                value = re.findall("b'(.+)'", value)[0]
                 self.__layers[index.row()] = value
                 self.dataChanged.emit(index, index)
                 return True
